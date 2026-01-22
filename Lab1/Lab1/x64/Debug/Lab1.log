@@ -1,0 +1,11 @@
+﻿  main.c
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(25,19): warning C4047: '==': 'int' differs in levels of indirection from 'void *'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(25,38): warning C4047: '==': 'int' differs in levels of indirection from 'void *'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(30,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(30,60): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(55,2): warning C4098: 'str_rev_rec': 'void' function returning a value
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(85,16): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(107,19): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(108,12): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\Lab1\main.c(114,1): warning C4715: 'myStrTok': not all control paths return a value
+  Lab1.vcxproj -> C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab1\x64\Debug\Lab1.exe
