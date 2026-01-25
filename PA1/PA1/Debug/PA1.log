@@ -1,0 +1,8 @@
+﻿  func.c
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA1\PA1\func.c(41,23): warning C4028: formal parameter 1 different from declaration
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA1\PA1\func.c(101,37): warning C4244: '=': conversion from 'double' to 'unsigned int', possible loss of data
+  main.c
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA1\PA1\main.c(31,14): warning C4047: 'function': 'char **' differs in levels of indirection from 'char [8][100]'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA1\PA1\main.c(31,14): warning C4024: 'readHeaders': different types for formal and actual parameter 1
+  Generating Code...
+  PA1.vcxproj -> C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA1\Debug\PA1.exe
