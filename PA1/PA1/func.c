@@ -197,14 +197,14 @@ void printCSV(FILE* outputstream, FitbitData dataArr[1440], float calories, floa
 	}
 	for (int i = 0; i < 1440; i++)
 	{
-		dataArr[i].patient == "-1" ? fprintf(outputstream, ",") : fprintf(outputstream, "%s,", dataArr[i].patient);
-		dataArr[i].minute == "-1" ? fprintf(outputstream, ",") : fprintf(outputstream, "%s,", dataArr[i].minute);
-		dataArr[i].calories == -1 ? fprintf(outputstream, ",") : fprintf(outputstream, "%lf,", dataArr[i].calories);
-		dataArr[i].distance == -1 ? fprintf(outputstream, ",") : fprintf(outputstream, "%lf,", dataArr[i].distance);
-		dataArr[i].floors == -1 ? fprintf(outputstream, ",") : fprintf(outputstream, "%d,", dataArr[i].floors);
-		dataArr[i].heartRate == -1 ? fprintf(outputstream, ",") : fprintf(outputstream, "%d,", dataArr[i].heartRate);
-		dataArr[i].steps == -1 ? fprintf(outputstream, ",") : fprintf(outputstream, "%d,", dataArr[i].steps);
-		dataArr[i].sleepLevel == -1 ? fprintf(outputstream, "\n") : fprintf(outputstream, "%d\n", (unsigned int)dataArr[i].sleepLevel);
+		fprintf(outputstream, "%s,", dataArr[i].patient);
+		fprintf(outputstream, "%s,", dataArr[i].minute);
+		fprintf(outputstream, "%lf,", dataArr[i].calories);
+		fprintf(outputstream, "%lf,", dataArr[i].distance);
+		fprintf(outputstream, "%d,", dataArr[i].floors);
+		fprintf(outputstream, "%d,", dataArr[i].heartRate);
+		fprintf(outputstream, "%d,", dataArr[i].steps);
+		fprintf(outputstream, "%d\n", (unsigned int)dataArr[i].sleepLevel);
 	}
 
 	//Print to console
@@ -221,13 +221,13 @@ void printCSV(FILE* outputstream, FitbitData dataArr[1440], float calories, floa
 	}
 	for (int i = 0; i < 1440; i++)
 	{
-		dataArr[i].patient == "-1" ? printf(",") : printf("%s,", dataArr[i].patient);
-		dataArr[i].minute == "-1" ? printf(",") : printf("%s,", dataArr[i].minute);
-		dataArr[i].calories == -1 ? printf(",") : printf("%lf,", dataArr[i].calories);
-		dataArr[i].distance == -1 ? printf(",") : printf("%lf,", dataArr[i].distance);
-		dataArr[i].floors == -1 ? printf(",") : printf("%d,", dataArr[i].floors);
-		dataArr[i].heartRate == -1 ? printf(",") : printf("%d,", dataArr[i].heartRate);
-		dataArr[i].steps == -1 ? printf(",") : printf("%d,", dataArr[i].steps);
-		dataArr[i].sleepLevel == -1 ? printf("\n") : printf("%d\n", (unsigned int)dataArr[i].sleepLevel);
+		printf("%s,", dataArr[i].patient);
+		printf("%s,", dataArr[i].minute);
+		printf("%lf,", dataArr[i].calories);
+		printf("%lf,", dataArr[i].distance);
+		printf("%d,", dataArr[i].floors);
+		printf("%d,", dataArr[i].heartRate);
+		printf("%d,", dataArr[i].steps);
+		printf("%d\n", (unsigned int)dataArr[i].sleepLevel);
 	}
 }

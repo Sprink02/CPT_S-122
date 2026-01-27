@@ -43,8 +43,7 @@
               "ViewState": "AgIAAIsFAAAAAAAAAAAAAKgFAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
               "WhenOpened": "2026-01-24T21:39:34.034Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -54,7 +53,7 @@
               "RelativeDocumentMoniker": "PA1\\Results.csv",
               "ToolTip": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\Results.csv",
               "RelativeToolTip": "PA1\\Results.csv",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAHAFAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAI8FAAAAAAAAAAAAAAIAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
               "WhenOpened": "2026-01-24T22:54:48.679Z",
               "EditorCaption": ""
@@ -78,9 +77,9 @@
               "Title": "func.c",
               "DocumentMoniker": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\func.c",
               "RelativeDocumentMoniker": "PA1\\func.c",
-              "ToolTip": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\func.c*",
-              "RelativeToolTip": "PA1\\func.c*",
-              "ViewState": "AgIAALgAAAAAAAAAAAAowNIAAAAIAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\func.c",
+              "RelativeToolTip": "PA1\\func.c",
+              "ViewState": "AgIAAM0AAAAAAAAAAAAowOUAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-01-22T23:38:15.347Z",
               "EditorCaption": ""
@@ -95,8 +94,7 @@
               "RelativeToolTip": "PA1\\main.c",
               "ViewState": "AgIAABMAAAAAAAAAAAAUwFQAAAB+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-01-22T23:35:43.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T23:35:43.945Z"
             }
           ]
         }
