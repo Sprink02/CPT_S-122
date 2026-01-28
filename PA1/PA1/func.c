@@ -142,7 +142,7 @@ void parseRecord(FitbitData dataArr[1440], const char* patientString, FILE* inpu
 				case 4: dataArr[timeNum].floors = (unsigned int)strtoul(cell, &eptr, 10); break;
 				case 5: dataArr[timeNum].heartRate = (unsigned int)atoi(cell); break;
 				case 6: dataArr[timeNum].steps = (unsigned int)atoi(cell); break;
-				case 7: dataArr[timeNum].sleepLevel = (Sleep)(atoi(cell) == -1? 0 : atoi(cell)); break;
+				case 7: dataArr[timeNum].sleepLevel = (Sleep)atoi(cell); break;
 				}
 			}
 		}

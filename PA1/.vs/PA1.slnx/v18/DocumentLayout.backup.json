@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B14D64D2-78E6-46AE-B28E-154AA419CD69}|PA1\\PA1.vcxproj|C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\func.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B14D64D2-78E6-46AE-B28E-154AA419CD69}|PA1\\PA1.vcxproj|solutionrelative:PA1\\func.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B14D64D2-78E6-46AE-B28E-154AA419CD69}|PA1\\PA1.vcxproj|C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\Results.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{B14D64D2-78E6-46AE-B28E-154AA419CD69}|PA1\\PA1.vcxproj|solutionrelative:PA1\\Results.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B14D64D2-78E6-46AE-B28E-154AA419CD69}|PA1\\PA1.vcxproj|C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\func.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B14D64D2-78E6-46AE-B28E-154AA419CD69}|PA1\\PA1.vcxproj|solutionrelative:PA1\\func.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B14D64D2-78E6-46AE-B28E-154AA419CD69}|PA1\\PA1.vcxproj|C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\func.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -47,7 +47,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Results.csv",
               "DocumentMoniker": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\Results.csv",
               "RelativeDocumentMoniker": "PA1\\Results.csv",
@@ -72,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "func.c",
               "DocumentMoniker": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\PA1\\PA1\\func.c",
               "RelativeDocumentMoniker": "PA1\\func.c",
@@ -80,8 +80,7 @@
               "RelativeToolTip": "PA1\\func.c",
               "ViewState": "AgIAAIIAAAAAAAAAAAAAAJAAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-01-22T23:38:15.347Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T23:38:15.347Z"
             },
             {
               "$type": "Document",
