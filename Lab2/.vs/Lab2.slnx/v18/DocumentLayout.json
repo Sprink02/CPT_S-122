@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\Lab2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C50A244F-4F94-4CEC-A935-3042DFB0F611}|Lab2\\Lab2.vcxproj|C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\Lab2\\Lab2\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C50A244F-4F94-4CEC-A935-3042DFB0F611}|Lab2\\Lab2.vcxproj|solutionrelative:Lab2\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\Lab2\\Lab2\\main.c",
+              "RelativeDocumentMoniker": "Lab2\\main.c",
+              "ToolTip": "C:\\Users\\Johnny\\Documents\\School Stuff\\CPT_S 122\\Github\\CPT_S-122\\Lab2\\Lab2\\main.c",
+              "RelativeToolTip": "Lab2\\main.c",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAGcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-01-28T22:12:52.779Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+﻿  main.c
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab2\Lab2\main.c(53,12): warning C4047: '=': 'Node *' differs in levels of indirection from 'Node **'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab2\Lab2\main.c(65,87): warning C4047: '=': 'Node *' differs in levels of indirection from 'node **'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab2\Lab2\main.c(78,30): warning C4047: '=': 'Node *' differs in levels of indirection from 'node **'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab2\Lab2\main.c(97,20): warning C4047: '=': 'node *' differs in levels of indirection from 'Node **'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab2\Lab2\main.c(104,8): warning C4047: '==': 'Node **' differs in levels of indirection from 'Node *'
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab2\Lab2\main.c(104,8): warning C4553: '==': result of expression not used; did you intend '='?
+  Lab2.vcxproj -> C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\Lab2\x64\Debug\Lab2.exe
