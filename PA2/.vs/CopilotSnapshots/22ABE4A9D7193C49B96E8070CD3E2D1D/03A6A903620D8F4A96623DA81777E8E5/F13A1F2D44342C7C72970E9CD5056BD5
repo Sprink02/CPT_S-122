@@ -1,0 +1,461 @@
+﻿/*
+Author: Johnathan Emanuelli
+Date: 1/31/2026
+Class: CPT_S 122
+Assignment: PA2
+Task: C file that contains function prototypes to complete PA2
+*/
+#include "func.h"
+
+/*
+Function: create_node
+Date Created: 1/31/2026
+Description: creates a single node
+Input: Record to add
+Returns: NODE* of new Node
+PreCondition:  none
+PostCondition: none
+*/
+NODE* create_node(RECORD newSong)
+{
+	NODE* newNode = malloc(sizeof(NODE));
+	if (newNode == NULL) return NULL;
+
+	//init
+	newNode->record = newSong;
+	newNode->prevNode = NULL; newNode->nextNode = NULL;
+	return newNode;
+}
+
+/*
+Function: add_node_front
+Date Created: 1/31/2026
+Description: creates a single node and adds it to the front of adoubly linked list
+Input: pointer to headpointer, Record of what to add
+Returns: success as 1, failure as 0
+PreCondition:  none
+PostCondition: none
+*/
+int add_node_front(NODE** pList, RECORD newSong)
+{
+	int success = 0;
+	NODE* newNode = create_node(newSong);
+	if (newNode == NULL) return 0;
+
+	if ((*pList) != NULL) //Only do if there is 1 node in a list
+	{
+		(*pList)->prevNode = newNode; //Set oldNode's prev -> &newNode
+		newNode->nextNode = *pList; //newNode next -> head pointer
+	}
+
+	*pList = newNode; //head pointer move to newNode
+	success = 1;
+	return success;
+}
+
+/*
+Function: load
+Date Created: 1/31/2026
+Description: reads and stores csv data into d-linked list
+Input: pointer to headpointer, inputstream
+Returns: none
+PreCondition:  inputstream exists and is open
+PostCondition: none
+*/
+void load(NODE** pList, FILE* input)
+{
+	char c = NULL;
+	int quotes = 0;
+	char cell[50] = { 0 };
+	int i = 0;
+	int rIndex = 0; //index of collumn to store info in RECORD
+	/*
+	typedef struct
+	{
+		char artist[50]; 0
+		char album[50]; 1
+		char song[50]; 2
+		char genre[50]; 3
+		DURATION songLength; 4
+		int numPlayed; 5
+		int rating; 6
+	}RECORD;
+	*/
+	RECORD newRecord = { 0 };
+	NODE* newNode = NULL;
+
+	while (c != EOF)
+	{
+		c = getc(input); //read 1 char
+
+		switch (c)
+		{
+		case EOF: break;
+		case ',':
+			if (quotes == 1)
+			{
+				cell[i] = c;
+			}
+			else
+			{
+				cell[i] = '\0';
+
+				//handling putting Cell into Record
+				switch (rIndex)
+				{
+				case 0: strcpy(newRecord.artist, cell); break;
+				case 1: strcpy(newRecord.album, cell); break;
+				case 2: strcpy(newRecord.song, cell); break;
+				case 3: strcpy(newRecord.genre, cell); break;
+				case 4: newRecord.songLength = strtodur(cell); break;
+				case 5: newRecord.numPlayed = atoi(cell); break;
+				case 6: newRecord.rating = atoi(cell); break;
+				default: break;
+				}
+
+				//moving to next col
+				rIndex++;
+				i = -1;
+			} break;
+		case '"': (quotes == 0) ? (quotes = 1) : (quotes = 0); i--; break; //Toggle quotes
+		case '\n': // add node, clear Record, reset for new line
+			add_node_front(pList, newRecord);
+			newRecord = (RECORD){ 0 }; //reset Record to NULL's
+			i = -1; rIndex = 0;
+			break;
+		default: cell[i] = c;  break;
+		}
+
+		i++;
+	}
+}
+
+/*
+Function: strtodur
+Date Created: 1/31/2026
+Description: converts string into DURATION struct
+Input: string of size 50
+Returns: none
+PreCondition:  DURATION struct is defined well
+PostCondition: none
+*/
+DURATION strtodur(char cell[50])
+{
+	int i = 0, j = 0;
+	char min[3] = { 0 }; //limit of 99:99; if this is reached what file do you own?
+	char sec[3] = { 0 };
+	int sCol = 0; //seen Colon
+	DURATION time = { 0 };
+	while (cell[i] != NULL)
+	{
+		if (cell[i] == ':')
+		{
+			sCol = 1;
+			j = 0;
+			continue;
+		}
+		if (sCol == 0)
+		{
+			//Minutes
+			min[j] = cell[i];
+		}
+		else
+		{
+			//seconds
+			sec[j] = cell[i];
+		}
+
+		j++;  i++;
+	}
+	time.minutes = atoi(min); time.seconds = atoi(sec);
+	return time;
+}
+
+/*
+Function: store
+Date Created: 2/1/2026
+Description: Writes the contents of the doubly linked list to a CSV file.
+Input: pointer to the head of the list, output stream
+Returns: none
+PreCondition: output stream is open for writing
+PostCondition: none
+*/
+void store(NODE* pList, FILE* output)
+{
+	NODE* pCur = pList;
+	while (pCur != NULL)
+	{
+		RECORD r = pCur->record;
+
+		// Array of pointers to the four string fields for easier looping
+		char* fields[] = { r.artist, r.album, r.song, r.genre };
+
+		for (int i = 0; i < 4; i++)
+		{
+			if (comma_check(fields[i]))
+			{
+				fprintf(output, "\"%s\",", fields[i]);
+			}
+			else
+			{
+				fprintf(output, "%s,", fields[i]);
+			}
+		}
+		// %02d ensures seconds like 5 appear as 05
+		fprintf(output, "%d:%02d,", r.songLength.minutes, r.songLength.seconds);
+		fprintf(output, "%d,", r.numPlayed);
+		fprintf(output, "%d\n", r.rating);
+
+		pCur = pCur->nextNode;
+	}
+	return;
+}
+
+/*
+Function: comma_check
+Date Created: 2/1/2026
+Description: returns a value if a comma is found withen a string
+Input: string of size 50
+Returns: 1 if found, 0 if not
+PreCondition:  none
+PostCondition: none
+*/
+int comma_check(char cell[50])
+{
+	for (int i = 0; i < 50; i++)
+	{
+		if (cell[i] == ',') return 1;
+		if (cell[i] == '\0') return 0;
+	}
+	return 0;
+}
+
+/*
+Function: display()
+Date Created: 2/2/2026
+Description: prints to console all records or matching records
+Input: NODE** headpointer
+Returns: none
+PreCondition:  none
+PostCondition: none
+*/
+void display(NODE** pList)
+{
+	int ans = 0;
+	char str[50] = { 0 };
+	do
+	{
+		system("cls");
+		printf("Display:\n(1) Print all Records.\n(2) Print all that match an artist\n");
+		scanf(" %d", &ans);
+	} while (ans < 1 || ans > 2);
+	if (ans == 2)
+	{
+		system("cls");
+		printf("Display:\nArtist's Name (Case sensative)(Mars, Bruno):");
+		scanf(" %s", str);
+		system("cls");
+		ans = 0;
+		NODE* temp = *pList;
+		while (temp != NULL)
+		{
+			if (strcmp(temp->record.artist, str) == 0)
+			{
+				print_record(temp);
+				ans = 1;
+			}
+			temp = temp->nextNode;
+		}
+		if (ans == 0) { printf("No matching records\n"); system("pause"); return; }
+	}
+	else
+	{
+		NODE* temp = *pList;
+		while (temp != NULL)
+		{
+			print_record(temp);
+			temp = temp->nextNode;
+		}
+		system("pause");
+	}
+	return;
+}
+
+//Helper function for display and other printing record functions()
+void print_record(NODE* node)
+{
+	printf("Artist: %s;  ", node->record.artist);
+	printf("Album: %s;  ", node->record.album);
+	printf("Song: %s;  ", node->record.song);
+	printf("Genre: %s;  ", node->record.genre);
+	printf("NumPlayed: %s;  ", node->record.numPlayed);
+	printf("Rating: %s;  ", node->record.rating);
+	printf("Song Length: %s\n\n", node->record.songLength);
+}
+
+//void insert();
+//void delete();
+
+/*
+Function: edit()
+Date Created: 2/2/2026
+Description: prompts a search by artist and	allows editing of a records
+Input: NODE ** headpointer
+Returns: none
+PreCondition:  none
+PostCondition: none
+*/
+void edit(NODE** pList)
+{
+	int length = 0;
+	char str[50] = { 0 };
+	int ans = 0;
+
+	system("cls");
+	printf("Edit:\nArtist's Name (Case sensative)(Mars, Bruno):");
+	scanf(" %s", str);
+	system("cls");
+	while ((*pList)->nextNode != NULL)
+	{
+		if (strcmp((*pList)->record.artist, str) == 0)
+		{
+			printf("(%d) %s\n", length, (*pList)->record.song);
+			ans = 1;
+			length++;
+		}
+		pList = (*pList)->nextNode;
+	}
+	if (ans == 0) { printf("No matching records\n"); system("pause"); return; }
+
+	do
+	{
+		printf("\nPick number of song to edit:"); scanf("%d", &ans);
+	} while (ans < 0 || ans > length);
+	system("cls");
+
+	//locating node specified
+	length = length - ans;
+	NODE* cNode = 0;
+	while ((*pList)->prevNode != NULL)
+	{
+		if (strcmp((*pList)->record.artist, str) == 0)
+		{
+			length--;
+			if (length == 0) break;
+		}
+		pList = (*pList)->prevNode;
+	}
+
+	//Find area to edit
+	print_record(*pList);
+	//Get what where to edit
+	ans = 0;
+	do
+	{
+		printf("Pick field to edit:\n(1) Artist\n(2) Album\n(3) Song\n(4) Genre\n(5) Song length\n(6)Number Played\n(7) Rating\n\n");
+		scanf(" %d", &ans);
+	} while (ans < 0 || ans > 7);
+	printf("\nChange to: ");
+	switch (ans)
+	{
+	case 1: scanf("%s", (*pList)->record.artist); break;
+	case 2: scanf("%s", (*pList)->record.album); break;
+	case 3: scanf("%s", (*pList)->record.song); break;
+	case 4: scanf("%s", (*pList)->record.genre); break;
+	case 5: 
+		printf("\nMin: ");
+		ans = -1;
+		do
+		{
+			scanf("%d", &ans);
+		} while (ans < 0 || ans > 99);
+		(*pList)->record.songLength.minutes = ans;
+		printf("\nSec: ");
+		ans = -1;
+		do
+		{
+			scanf("%d", &ans);
+		} while (ans < 0 || ans > 99);
+		(*pList)->record.songLength.seconds = ans;
+	case 6: scanf("%d", (*pList)->record.numPlayed); break;
+	case 7: scanf("%d", (*pList)->record.rating); break;
+	default: break;
+	}
+	system("cls");
+	return;
+}
+//void sort();
+//void rate();
+
+/*
+Function: play()
+Date Created: 2/2/2026
+Description: "plays" all the songs
+Input: NODE ** headpointer
+Returns: none
+PreCondition:  none
+PostCondition: none
+*/
+void play(NODE** pList)
+{
+	while ((*pList)->nextNode != NULL)
+	{
+		system("cls");
+		print_record(*pList);
+		Sleep(1000);
+		pList = (*pList)->nextNode;
+	}
+	return;
+}
+//void shuffle();
+
+/*
+Function: exit
+Date Created: 2/2/2026
+Description: "exits" the program, and overwrites the file
+Input: none
+Returns: none
+PreCondition:  none
+PostCondition: none
+*/
+void exit(NODE* pList, FILE* output)
+{
+	store(pList, output);
+	free_list(&pList);
+}
+
+/*
+Function: menu
+Date Created: 2/1/2026
+Description: prints a menu to console for next action
+Input: none
+Returns: number of action desired
+PreCondition:  none
+PostCondition: none
+*/
+int menu()
+{
+	int input = 0;
+	do
+	{
+		system("cls");
+		printf("(1) load\n(2) store\n(3) display\n(4) insert\n(5) delete\n(6) edit\n(7) sort\n(8) rate\n(9) play\n(10) shuffle\n(11) exit\n\nSelect your next option: ");
+		scanf(" %d", &input);
+	} while (input < 0 || input > 11);
+
+	return input;
+}
+
+/*
+Helper function to free the entire Linked list, no matter size
+*/
+void free_list(NODE** pList)
+{
+	NODE* pCur = pList;
+	while (pCur != NULL)
+	{
+		*pList = pCur->nextNode;
+		free(pCur);
+		pCur = *pList;
+	}
+}

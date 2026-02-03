@@ -1,0 +1,42 @@
+﻿/*
+Author: Johnathan Emanuelli
+Date: 1/31/2026
+Class: CPT_S 122
+Assignment: PA2
+Task: Main program that loads data from musicPlayList.csv and "plays" it
+*/
+
+#include "func.h"
+
+int main()
+{
+	srand(time(NULL)); //set random for shuffle
+	NODE* pHead = NULL;
+	FILE* inputstream = fopen("musicPlayList.csv", "r");
+	FILE* outputstream = fopen("output.csv", "w"); //change eventually
+	if (inputstream == NULL) { printf("failed to open musicPlayList.csv"); return 0; }
+
+	int input = 0;
+	while (input != 11)
+	{
+		input = menu();
+		switch (input)
+		{
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+		case 11: exit(pHead,outputstream); break;
+		default: break;
+		}
+	}
+
+	fclose(inputstream);
+	return 0;
+}

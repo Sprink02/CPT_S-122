@@ -1,0 +1,6 @@
+﻿  func.c
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA2\PA2\func.c(146,17): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
+  main.c
+C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA2\PA2\main.c(13,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+  PA2.vcxproj -> C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA2\x64\Debug\PA2.exe

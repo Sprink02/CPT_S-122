@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="PA2/PA2.vcxproj" Id="67a634d4-1cf2-4864-98bd-85973bc6666c" />
+</Solution>
