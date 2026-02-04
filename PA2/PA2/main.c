@@ -28,7 +28,7 @@ int main()
 		case 5: printf("Delete not implemented\n"); system("pause"); break;
 		case 6: edit(&pHead); break;
 		case 7: printf("Sort not implemented\n"); system("pause"); break;
-		case 8: printf("Rate not implemented\n"); system("pause"); break;
+		case 8: rate(&pHead); break;
 		case 9: play(&pHead); break;
 		case 10: printf("Shuffle not implemented\n"); system("pause"); break;
 		case 11: exitProgram(pHead); break;

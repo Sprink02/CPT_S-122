@@ -379,14 +379,86 @@ void edit(NODE** pList)
 		temp->record.songLength.seconds = ans;
 		break;
 	case 6: scanf("%d", &temp->record.numPlayed); break;
-	case 7: scanf("%d", &temp->record.rating); break;
+	case 7:
+		ans = 0;
+		do
+		{
+			printf("New Rating:");
+			scanf(" %d", &ans);
+		} while (ans < 1 || ans > 5);
+		temp->record.rating = ans;		
+		break;
 	default: break;
 	}
 	system("cls");
 	return;
 }
 //void sort();
-//void rate();
+
+/*
+Function: rate()
+Date Created: 2/2/2026
+Description: prompts for a song and allows rating it
+Input: NODE ** headpointer
+Returns: none
+PreCondition:  none
+PostCondition: none
+*/
+void rate(NODE** pList)
+{
+	int length = 0;
+	char str[50] = { 0 };
+	int ans = 0;
+
+	system("cls");
+	printf("Edit:\nArtist's Name (Case sensative)(Mars, Bruno):");
+	scanf(" %s", str);
+	system("cls");
+	NODE* temp = *pList;
+	while (temp != NULL)
+	{
+		if (strcmp(temp->record.artist, str) == 0)
+		{
+			printf("(%d) %s\n", length, temp->record.song);
+			ans = 1;
+			length++;
+		}
+		temp = temp->nextNode;
+	}
+	if (ans == 0) { printf("No matching records\n"); system("pause"); return; }
+
+	do
+	{
+		printf("\nPick number of song to edit:"); scanf("%d", &ans);
+	} while (ans < 0 || ans >= length);
+	system("cls");
+
+	//locating node specified
+	length = length - ans - 1;
+	temp = *pList;
+	while (temp != NULL)
+	{
+		if (strcmp(temp->record.artist, str) == 0)
+		{
+			if (length == 0) break;
+			length--;
+		}
+		temp = temp->nextNode;
+	}
+
+	//Find area to edit
+	print_record(temp);
+	//Get what where to edit
+	ans = 0;
+	do
+	{
+		printf("New Rating:");
+		scanf(" %d", &ans);
+	} while (ans < 1 || ans > 5);	
+	temp->record.rating = ans;
+	system("cls");
+	return;
+}
 
 /*
 Function: play()

@@ -50,7 +50,7 @@ void display(NODE** pList);
 //void delete();
 void edit(NODE** pList);
 //void sort();
-//void rate();
+void rate(NODE** pList);
 void play(NODE** pList);
 //void shuffle();
 void exitProgram(NODE* pList);
