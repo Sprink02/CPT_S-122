@@ -275,8 +275,8 @@ void display(NODE** pList)
 			print_record(temp);
 			temp = temp->nextNode;
 		}
-		system("pause");
 	}
+	system("pause");
 	return;
 }
 
@@ -352,7 +352,7 @@ void edit(NODE** pList)
 	ans = 0;
 	do
 	{
-		printf("Pick field to edit:\n(1) Artist\n(2) Album\n(3) Song\n(4) Genre\n(5) Song length\n(6)Number Played\n(7) Rating\n\n");
+		printf("Pick field to edit:\n(1) Artist\n(2) Album\n(3) Song\n(4) Genre\n(5) Song length\n(6) Number Played\n(7) Rating\n\n");
 		scanf(" %d", &ans);
 	} while (ans < 1 || ans > 7);
 	printf("\nChange to: ");
@@ -390,6 +390,7 @@ void edit(NODE** pList)
 		break;
 	default: break;
 	}
+	system("pause");
 	system("cls");
 	return;
 }
@@ -514,7 +515,11 @@ int menu()
 	{
 		system("cls");
 		printf("(1) load\n(2) store\n(3) display\n(4) insert\n(5) delete\n(6) edit\n(7) sort\n(8) rate\n(9) play\n(10) shuffle\n(11) exit\n\nSelect your next option: ");
-		scanf(" %d", &input);
+		if (scanf("%d", &input) != 1) //Fixing scanf being bad
+		{
+			while (getchar() != '\n');
+			input = -1;
+		}
 	} while (input < 0 || input > 11);
 
 	return input;
