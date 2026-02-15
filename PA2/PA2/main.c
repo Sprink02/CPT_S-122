@@ -6,7 +6,7 @@ Assignment: PA2
 Task: Main program that loads data from musicPlayList.csv and "plays" it
 */
 
-#include "func.h"
+#include "test.h"
 
 int main()
 {
@@ -24,18 +24,19 @@ int main()
 		case 1: load(&pHead, inputstream); break;
 		case 2: store(pHead); break;
 		case 3: display(&pHead); break;
-		case 4: printf("Insert not implemented\n"); system("pause"); break;
-		case 5: printf("Delete not implemented\n"); system("pause"); break;
+		case 4: insert(&pHead, NULL); break;
+		case 5: delete_song(&pHead, NULL); break;
 		case 6: edit(&pHead); break;
-		case 7: printf("Sort not implemented\n"); system("pause"); break;
+		case 7: sort(&pHead); break;
 		case 8: rate(&pHead); break;
 		case 9: play(&pHead); break;
-		case 10: printf("Shuffle not implemented\n"); system("pause"); break;
+		case 10: shuffle(&pHead, NULL); break;
 		case 11: exitProgram(pHead); break;
+		case 0: main_test(); break;
 		default: break;
 		}
 	}
-	
+
 	fclose(inputstream);
 	return 0;
 }

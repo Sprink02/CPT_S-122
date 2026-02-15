@@ -125,6 +125,9 @@ void load(NODE** pList, FILE* input)
 		}
 		i++;
 	}
+	system("cls");
+	printf("loaded file\n");
+	system("pause");
 }
 
 /*
@@ -207,6 +210,9 @@ void store(NODE* pList)
 	}
 
 	fclose(output);
+	system("cls");
+	printf("Stored file\n");
+	system("pause");
 	return;
 }
 
@@ -252,7 +258,10 @@ void display(NODE** pList)
 	{
 		system("cls");
 		printf("Display:\nArtist's Name (Case sensative)(Mars, Bruno):");
-		scanf(" %s", str);
+		//scanf(" %s", str);
+		while (getchar() != '\n');
+		fgets(str, 49, stdin);
+		str[strcspn(str, "\n")] = '\0';
 		system("cls");
 		ans = 0;
 		NODE* temp = *pList;
@@ -292,8 +301,172 @@ void print_record(NODE* node)
 	printf("Song Length: %d:%02d\n\n", node->record.songLength.minutes, node->record.songLength.seconds);
 }
 
-//void insert();
-//void delete();
+/*
+Function: insert()
+Date Created: 2/9/2026
+Description: prompts user for new record details and inserts at front of list
+Input: NODE** headpointer
+Returns: none
+PreCondition: none
+PostCondition: new record added to front of list
+*/
+void insert(NODE** pList, char arr[7][49])
+{
+	RECORD newRecord = { 0 };
+	int min = 0, sec = 0, rating = 0;
+
+	system("cls");
+	printf("Insert New Record:\n\n");
+	if (arr != NULL) //For testing
+	{
+		strcpy(newRecord.artist, arr[0]);
+		strcpy(newRecord.album, arr[1]);
+		strcpy(newRecord.song, arr[2]);
+		strcpy(newRecord.genre, arr[3]);
+		char* tok;
+		tok = strtok(arr[4], ":");
+		newRecord.songLength.minutes = min;
+		tok = strtok(NULL, ":");
+		newRecord.songLength.seconds = sec;
+
+		newRecord.numPlayed = atoi(arr[5]);
+		if (atoi(arr[6]) < 1 || atoi(arr[6]) > 5) printf("Rating bad; Test Failed");
+		newRecord.rating = atoi(arr[6]);
+
+		goto insert_test_goto; //Programming Taboo
+	}
+
+	// Clear input buffer
+	while (getchar() != '\n');
+
+	printf("Artist Name: ");
+	fgets(newRecord.artist, 49, stdin);
+	newRecord.artist[strcspn(newRecord.artist, "\n")] = '\0'; // Remove newline
+
+	printf("Album Title: ");
+	fgets(newRecord.album, 49, stdin);
+	newRecord.album[strcspn(newRecord.album, "\n")] = '\0';
+
+	printf("Song Title: ");
+	fgets(newRecord.song, 49, stdin);
+	newRecord.song[strcspn(newRecord.song, "\n")] = '\0';
+
+	printf("Genre: ");
+	fgets(newRecord.genre, 49, stdin);
+	newRecord.genre[strcspn(newRecord.genre, "\n")] = '\0';
+
+	int val = 0;
+	do {
+		printf("Song Length (1:06): ");
+		val = scanf("%d:%d", &min, &sec);
+		while (getchar() != '\n');
+	} while (val == 0);
+	newRecord.songLength.minutes = min;
+	newRecord.songLength.seconds = sec;
+
+	val = 0;
+	do {
+		printf("Number of Times Played: ");
+		val = scanf("%d", &newRecord.numPlayed);
+		while (getchar() != '\n');
+	} while (val == 0);
+
+	do {
+		printf("Rating (1-5): ");
+		val = scanf("%d", &rating);
+		while (getchar() != '\n');
+	} while (rating < 1 || rating > 5 || val == 0);
+	newRecord.rating = rating;
+
+insert_test_goto:
+	// Insert at front of list
+	if (add_node_front(pList, newRecord))
+	{
+		printf("\nRecord successfully added!\n");
+	}
+	else
+	{
+		printf("\nFailed to add record.\n");
+	}
+
+	system("pause");
+	system("cls");
+}
+
+/*
+Function: delete_song()
+Date Created: 2/9/2026
+Description: prompts for song title and removes matching record from list
+Input: NODE** headpointer
+Returns: none
+PreCondition: none
+PostCondition: matching record removed if found
+*/
+void delete_song(NODE** pList, const char* str)
+{
+	char songTitle[50] = { 0 };
+
+	if (str == NULL)
+	{
+		system("cls");
+		printf("Delete Record:\n\n");
+
+		// Clear input buffer
+		while (getchar() != '\n');
+
+		printf("Enter Song Title to Delete: ");
+		fgets(songTitle, 49, stdin);
+		songTitle[strcspn(songTitle, "\n")] = '\0'; // Remove newline
+	}
+	else
+	{
+		strcpy(songTitle, str);
+	}
+
+	// Search for the song
+	NODE* pCur = *pList;
+	int found = 0;
+
+	while (pCur != NULL)
+	{
+		if (strcmp(pCur->record.song, songTitle) == 0)
+		{
+			found = 1;
+
+			// Case 1: Deleting the head node
+			if (pCur == *pList)
+			{
+				*pList = pCur->nextNode;
+				if (*pList != NULL)
+				{
+					(*pList)->prevNode = NULL;
+				}
+			}
+			// Case 2: Deleting a middle or last node
+			else
+			{
+				pCur->prevNode->nextNode = pCur->nextNode;
+				if (pCur->nextNode != NULL)
+				{
+					pCur->nextNode->prevNode = pCur->prevNode;
+				}
+			}
+
+			printf("\nDeleted: %s by %s\n", pCur->record.song, pCur->record.artist);
+			free(pCur);
+			break;
+		}
+		pCur = pCur->nextNode;
+	}
+
+	if (!found)
+	{
+		printf("\nSong '%s' not found in the playlist.\n", songTitle);
+	}
+
+	system("pause");
+	system("cls");
+}
 
 /*
 Function: edit()
@@ -312,7 +485,10 @@ void edit(NODE** pList)
 
 	system("cls");
 	printf("Edit:\nArtist's Name (Case sensative)(Mars, Bruno):");
-	scanf(" %s", str);
+	//scanf(" %s", str);
+	while (getchar() != '\n');
+	fgets(str, 49, stdin);
+	str[strcspn(str, "\n")] = '\0';
 	system("cls");
 	NODE* temp = *pList;
 	while (temp != NULL)
@@ -356,12 +532,17 @@ void edit(NODE** pList)
 		scanf(" %d", &ans);
 	} while (ans < 1 || ans > 7);
 	printf("\nChange to: ");
+	while (getchar() != '\n');
 	switch (ans)
 	{
-	case 1: scanf("%s", temp->record.artist); break;
-	case 2: scanf("%s", temp->record.album); break;
-	case 3: scanf("%s", temp->record.song); break;
-	case 4: scanf("%s", temp->record.genre); break;
+	case 1: fgets(temp->record.artist, 49, stdin);
+		temp->record.artist[strcspn(temp->record.artist, "\n")] = '\0'; break;
+	case 2: fgets(temp->record.album, 49, stdin);
+		temp->record.album[strcspn(temp->record.album, "\n")] = '\0'; break;
+	case 3: fgets(temp->record.song, 49, stdin);
+		temp->record.song[strcspn(temp->record.song, "\n")] = '\0'; break;
+	case 4: fgets(temp->record.genre, 49, stdin);
+		temp->record.genre[strcspn(temp->record.genre, "\n")] = '\0'; break;
 	case 5:
 		printf("\nMin: ");
 		ans = -1;
@@ -386,7 +567,7 @@ void edit(NODE** pList)
 			printf("New Rating:");
 			scanf(" %d", &ans);
 		} while (ans < 1 || ans > 5);
-		temp->record.rating = ans;		
+		temp->record.rating = ans;
 		break;
 	default: break;
 	}
@@ -394,7 +575,96 @@ void edit(NODE** pList)
 	system("cls");
 	return;
 }
-//void sort();
+
+/*
+Function: sort()
+Date Created: 2/9/2026
+Description: sorts the playlist based on user-selected criteria
+Input: NODE** headpointer
+Returns: none
+PreCondition: none
+PostCondition: list is sorted according to selected method
+*/
+void sort(NODE** pList)
+{
+	int choice = 0;
+
+	if (*pList == NULL || (*pList)->nextNode == NULL)
+	{
+		system("cls");
+		printf("Not enough records to sort.\n");
+		system("pause");
+		return;
+	}
+
+	system("cls");
+	printf("Sort Options:\n");
+	printf("(1) Sort by Artist (A-Z)\n");
+	printf("(2) Sort by Album Title (A-Z)\n");
+	printf("(3) Sort by Rating (1-5)\n");
+	printf("(4) Sort by Times Played (Largest-Smallest)\n");
+	printf("\nSelect sort method: ");
+	scanf("%d", &choice);
+
+	if (choice < 1 || choice > 4)
+	{
+		printf("Invalid choice.\n");
+		system("pause");
+		return;
+	}
+
+	// Bubble sort implementation
+	int swapped;
+	NODE* pCur;
+	NODE* pLast = NULL;
+
+	do
+	{
+		swapped = 0;
+		pCur = *pList;
+
+		while (pCur->nextNode != pLast)
+		{
+			int shouldSwap = 0;
+
+			switch (choice)
+			{
+			case 1: // Sort by artist A-Z
+				if (strcmp(pCur->record.artist, pCur->nextNode->record.artist) > 0)
+					shouldSwap = 1;
+				break;
+			case 2: // Sort by album A-Z
+				if (strcmp(pCur->record.album, pCur->nextNode->record.album) > 0)
+					shouldSwap = 1;
+				break;
+			case 3: // Sort by rating 1-5
+				if (pCur->record.rating > pCur->nextNode->record.rating)
+					shouldSwap = 1;
+				break;
+			case 4: // Sort by times played (largest to smallest)
+				if (pCur->record.numPlayed < pCur->nextNode->record.numPlayed)
+					shouldSwap = 1;
+				break;
+			}
+
+			if (shouldSwap)
+			{
+				// Swap the records
+				RECORD temp = pCur->record;
+				pCur->record = pCur->nextNode->record;
+				pCur->nextNode->record = temp;
+				swapped = 1;
+			}
+
+			pCur = pCur->nextNode;
+		}
+		pLast = pCur;
+	} while (swapped);
+
+	printf("\nPlaylist sorted successfully!\n");
+	system("pause");
+	system("cls");
+}
 
 /*
 Function: rate()
@@ -455,7 +725,7 @@ void rate(NODE** pList)
 	{
 		printf("New Rating:");
 		scanf(" %d", &ans);
-	} while (ans < 1 || ans > 5);	
+	} while (ans < 1 || ans > 5);
 	temp->record.rating = ans;
 	system("cls");
 	return;
@@ -482,7 +752,104 @@ void play(NODE** pList)
 	}
 	return;
 }
-//void shuffle();
+
+/*
+Function: shuffle()
+Date Created: 2/9/2026
+Description: plays songs in random order without modifying list structure
+Input: NODE** headpointer
+Returns: none
+PreCondition: none
+PostCondition: songs played in random order
+*/
+void shuffle(NODE** pList, const int* order)
+{
+	// Count the number of songs in the list
+	int count = 0;
+	NODE* pCur = *pList;
+	while (pCur != NULL)
+	{
+		count++;
+		pCur = pCur->nextNode;
+	}
+
+	if (count == 0)
+	{
+		system("cls");
+		printf("No songs to shuffle.\n");
+		system("pause");
+		return;
+	}
+
+	// Create array to hold play order
+	int* playOrder = (int*)malloc(count * sizeof(int));
+	if (playOrder == NULL)
+	{
+		printf("Memory allocation failed.\n");
+		return;
+	}
+	if (order == NULL) //For testing
+	{
+		// Initialize play order with sequential indices
+		for (int i = 0; i < count; i++)
+		{
+			playOrder[i] = i;
+		}
+		//Actual Shuffling
+		for (int i = count - 1; i > 0; i--)
+		{
+			int j = rand() % (i + 1);
+			int temp = playOrder[i];
+			playOrder[i] = playOrder[j];
+			playOrder[j] = temp;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < count; i++)
+		{
+			playOrder[i] = order[i];
+		}
+	}
+	
+	for (int i = 0; i < count; i++) //actual playing
+	{
+		int position = playOrder[i];
+		NODE* pTemp = *pList;
+
+		// Navigate to the song at the specified position
+		// Can move forward or backward depending on which is closer
+		//TBH idk what this was for
+		if (position < count / 2)
+		{
+			// Move forward from head
+			for (int j = 0; j < position; j++)
+			{
+				pTemp = pTemp->nextNode;
+			}
+		}
+		else
+		{
+			// Move to end first, then backward
+			while (pTemp->nextNode != NULL)
+			{
+				pTemp = pTemp->nextNode;
+			}
+			for (int j = count - 1; j > position; j--)
+			{
+				pTemp = pTemp->prevNode;
+			}
+		}
+
+		system("cls");
+		printf("Now playing (shuffled %d/%d):\n\n", i + 1, count);
+		print_record(pTemp);
+		Sleep(1000);
+	}
+
+	free(playOrder);
+	system("cls");
+}
 
 /*
 Function: exit
@@ -514,7 +881,7 @@ int menu()
 	do
 	{
 		system("cls");
-		printf("(1) load\n(2) store\n(3) display\n(4) insert\n(5) delete\n(6) edit\n(7) sort\n(8) rate\n(9) play\n(10) shuffle\n(11) exit\n\nSelect your next option: ");
+		printf("(1) load\n(2) store\n(3) display\n(4) insert\n(5) delete\n(6) edit\n(7) sort\n(8) rate\n(9) play\n(10) shuffle\n(11) exit\n(0) test\nSelect your next option: ");
 		if (scanf("%d", &input) != 1) //Fixing scanf being bad
 		{
 			while (getchar() != '\n');

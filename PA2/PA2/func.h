@@ -46,13 +46,13 @@ typedef struct node
 void load(NODE** pList, FILE* input);
 void store(NODE* pList);
 void display(NODE** pList);
-//void insert();
-//void delete();
+void insert(NODE** pList, char arr[7][49]);
+void delete_song(NODE** pList, const char* str);
 void edit(NODE** pList);
-//void sort();
+void sort(NODE** pList);
 void rate(NODE** pList);
 void play(NODE** pList);
-//void shuffle();
+void shuffle(NODE** pList, const int* order);
 void exitProgram(NODE* pList);
 
 

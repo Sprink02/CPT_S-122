@@ -18,6 +18,9 @@
     <ClInclude Include="func.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="func.c">
@@ -26,12 +29,12 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="musicPlayList.csv">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="output.csv">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
