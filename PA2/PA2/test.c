@@ -10,7 +10,7 @@ void insert_test()
 void delete_test()
 {
 	NODE* pHead = NULL;
-	RECORD newRecord = { NULL };
+	RECORD newRecord = { 0 };
 	DURATION time = { 0 };
 	time.minutes = 4;
 	time.seconds = 36;

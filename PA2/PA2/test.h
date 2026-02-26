@@ -1,4 +1,4 @@
-#include "func.h"
+#include "./Bin/func.h"
 
 void insert_test();
 void delete_test();

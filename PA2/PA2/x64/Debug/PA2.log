@@ -1,3 +1,1 @@
-﻿  test.c
-C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA2\PA2\test.c(13,9): warning C4047: 'initializing': 'char' differs in levels of indirection from 'void *'
-  PA2.vcxproj -> C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA2\x64\Debug\PA2.exe
+﻿  PA2.vcxproj -> C:\Users\Johnny\Documents\School Stuff\CPT_S 122\Github\CPT_S-122\PA2\x64\Debug\PA2.exe
