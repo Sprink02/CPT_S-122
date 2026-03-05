@@ -4,6 +4,7 @@
 #include <print>
 #include <random>
 
+
 //std clearscreen
 inline void clr_scr()
 {
@@ -19,16 +20,7 @@ inline void pause()
 
 int main()
 {
-	srand(time(NULL));
-	int i = rand();
-	if (i == 12)
-	{
-		std::print("hi");
-	}
-	else
-	{
-		std::print("hi");
-	}
-	
+	if (1 == 1)
+		?? < std::cout << "hi" << std::endl; ??>
 	return 0;
 }

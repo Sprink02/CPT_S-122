@@ -27,7 +27,7 @@ public:
 	void runApp(std::fstream& fileDiet, std::fstream& fileExercise)
 	{
 		char u_cin = 0;
-		while (u_cin != 9)
+		while (u_cin != 9) 
 		{
 			while (u_cin < '1' || u_cin > '9') //basic error check
 			{
@@ -183,33 +183,7 @@ private:
 			std::cin.ignore(255, '\n');
 		}
 		int index = u_cin - '1'; u_cin = 0;
-		DIET* dailyPlan = plan.get_at_index(index);
-		displayDailyPlan(*dailyPlan);
-		
-		while (u_cin < '1' || u_cin > '3') //Change the item
-		{
-			std::println("Give # of item to edit:\n1) Plan Name\n2) Plan Goal\n3) Plan Date\n\n");
-			std::cin >> u_cin;
-			std::cin.ignore(255, '\n');
-		}
-		index = u_cin - '0'; u_cin = 0;
-
-		clr_scr();
-		string str;
-		std::print("New item: ");
-		std::getline(std::cin, str); //Captures whitespace, ends at \n
-
-		switch (index)
-		{
-		case 1: dailyPlan->set_planName(str); break;
-		case 2: dailyPlan->set_planGoal(std::stoi(str)); break;
-		case 3: dailyPlan->set_planDate(str);  break;
-		default:
-			break;
-		}
-
-		std::println("Edit complete");
-		pause();
+		plan.get_at_index(index)->editGoal();
 		return;
 	}
 	void editDailyPlan(LIST_E& plan)
@@ -223,33 +197,7 @@ private:
 			std::cin.ignore(255, '\n');
 		}
 		int index = u_cin - '1'; u_cin = 0;
-		EXERCISE* dailyPlan = plan.get_at_index(index);
-		displayDailyPlan(*dailyPlan);
-
-		while (u_cin < '1' || u_cin > '3') //Change the item
-		{
-			std::println("Give # of item to edit:\n1) Plan Name\n2) Plan Goal\n3) Plan Date\n\n");
-			std::cin >> u_cin;
-			std::cin.ignore(255, '\n');
-		}
-		index = u_cin - '0'; u_cin = 0;
-
-		clr_scr();
-		string str;
-		std::print("New item: ");
-		std::getline(std::cin, str); //Captures whitespace, ends at \n
-
-		switch (index)
-		{
-		case 1: dailyPlan->set_planName(str); break;
-		case 2: dailyPlan->set_planGoal(std::stoi(str)); break;
-		case 3: dailyPlan->set_planDate(str);  break;
-		default:
-			break;
-		}
-
-		std::println("Edit complete");
-		pause();
+		plan.get_at_index(index)->editGoal();
 		return;
 	}
 

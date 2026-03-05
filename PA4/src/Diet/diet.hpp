@@ -49,6 +49,38 @@ public:
 		out << d._planName << '\n' << d._planGoal << '\n' << d._planDate << '\n' << '\n';
 		return out;
 	}
+	void editGoal()
+	{
+		char u_cin = 0;
+		std::cout << *this;
+
+		while (u_cin < '1' || u_cin > '3') //Change the item
+		{
+			std::println("Give # of item to edit:\n1) Plan Name\n2) Plan Goal\n3) Plan Date\n\n");
+			std::cin >> u_cin;
+			std::cin.ignore(255, '\n');
+		}
+
+		std::cout << "\x1B[2J\x1B[0;0H";  //clr_scr();
+		string str;
+		std::print("New item: ");
+		std::getline(std::cin, str); //Captures whitespace, ends at \n
+
+		switch (u_cin - '0')
+		{
+		case 1: this->_planName = str; break;
+		case 2: this->_planGoal = std::stoi(str); break;
+		case 3: this->_planDate = str;  break;
+		default:
+			break;
+		}
+
+		std::println("Edit complete");
+		std::cout << *this;
+		std::print("Press ENTER to continue");
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //pause();
+		return;
+	}
 
 	//setters and getters
 	int set_planName(string newPlanName)
