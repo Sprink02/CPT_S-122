@@ -3,6 +3,8 @@
 #include <cstring>
 #include <print>
 #include <random>
+#include <queue>
+#include <stack>
 
 
 //std clearscreen
@@ -18,9 +20,13 @@ inline void pause()
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+typedef struct myStruct
+{
+	int i;
+	double d;
+}MyStruct;
+
 int main()
 {
-	if (1 == 1)
-		?? < std::cout << "hi" << std::endl; ??>
-	return 0;
+	
 }
