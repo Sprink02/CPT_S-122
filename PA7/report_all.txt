@@ -1,0 +1,26 @@
+Attendance Report – All Students
+Generated: Sun Apr  5 20:21:47 2026
+
+--------------------------------------------------
+Name                         | Absences | Most Recent
+--------------------------------------------------
+"Mort | 1       | Sun Apr  5 20:21:00 2026
+
+"Willis | 1       | Sun Apr  5 20:21:00 2026
+
+"Smith | 1       | Sun Apr  5 20:21:00 2026
+
+"Sam | 1       | Sun Apr  5 20:21:00 2026
+
+"Payton | 1       | Sun Apr  5 20:21:00 2026
+
+"James | 1       | Sun Apr  5 20:21:00 2026
+
+"Art | 1       | Sun Apr  5 20:21:00 2026
+
+"Leinart | 1       | Sun Apr  5 20:21:00 2026
+
+"Beck | 1       | Sun Apr  5 20:21:00 2026
+
+"Smith | 0       | Sun Apr  5 20:21:00 2026
+
