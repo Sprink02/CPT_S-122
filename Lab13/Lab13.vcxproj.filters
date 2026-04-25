@@ -15,9 +15,26 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main1.c">
+    <ClInclude Include="Dog.h">
       <Filter>Source Files</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mammal.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Task3.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
